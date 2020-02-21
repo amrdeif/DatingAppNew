@@ -1,0 +1,44 @@
+--Initiailizes git
+git init
+
+=========Angular=========
+
+--Install angilar version
+npm install -g @angular/cli
+
+--Install bootstrap and font awesome
+npm install bootstrap font-awesome
+
+--Gets npm version
+npm --version
+
+--Create new angular app
+ng new DatingApp-SPA
+
+--Run application
+ng serve
+
+
+
+=======Dot Net Core=======
+
+--Create a new API
+dotnet new webapi -n DatingApp.API
+
+--Run application
+dotnet run
+
+--Run application and listen to changes
+dotnet watch run
+
+
+
+
+========= Extensions for vs code =========
+=======API Extensions=======
+CSharp, CSharp Extensions, Nuget Package Manager
+=====Angular Extensions=====
+Angular Snippets by John Papa, Angular Files, Angular Language Service
+Auto Rename Tag, Bracket Pair Colorizer 2, Debugger for Chrome, Material Icon Theme,
+Prettier - Code formatter, TSLint, angular2-switcher
+
