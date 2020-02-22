@@ -14,7 +14,7 @@ export class ValueComponent implements OnInit {
 
   ngOnInit() {
     this.getValues();
-    //this.getTestValues();
+    // this.getTestValues();
   }
   getBaseUrl() {
     return 'http://localhost:5002/';
@@ -22,7 +22,7 @@ export class ValueComponent implements OnInit {
 
   getValues() {
     const headers = new HttpHeaders({ 'Content-Type': 'text/plain'});
-    //this.http.get('http://localhost:5002/api/values', {responseType: 'text', headers})
+    // this.http.get('http://localhost:5002/api/values', {responseType: 'text', headers})
     this.http.get('http://localhost:5002/api/values')
       .subscribe(data => {
         this.values = data;

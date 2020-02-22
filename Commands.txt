@@ -21,6 +21,25 @@ ng new DatingApp-SPA
 --Run application
 ng serve
 
+--Remove package 
+npm uninstall alertifyjs
+
+--Install alertifyJS
+npm install alertifyjs
+
+--Install angular JWT auth0
+npm install @auth0/angular-jwt
+
+--Install ngx-bootstrap (bootstrap components for angular)
+npm install ngx-bootstrap --save
+
+--Install bootswatch (themes)
+npm install bootswatch
+
+--Create guard
+ng g guard auth --skipTests
+
+
 
 
 =======Dot Net Core=======
