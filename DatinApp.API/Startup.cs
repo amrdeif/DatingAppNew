@@ -19,6 +19,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using DatinApp.API.Helpers;
+using AutoMapper;
 
 namespace DatinApp.API
 {
@@ -37,10 +38,17 @@ namespace DatinApp.API
             //To Add SQLLite >> Got to nuget package >> add package >>
             //Microsoft.EntityframeworkCore.Sqlite and use dotnet core version
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(opt => {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
 
             services.AddCors();
+            services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
+            
+            //For database seeding (old way)
+            services.AddTransient<Seed>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
@@ -57,7 +65,7 @@ namespace DatinApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -82,6 +90,9 @@ namespace DatinApp.API
             //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //Use this to run DB Seeding (OLD Way)
+            //seeder.Seedusers();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 

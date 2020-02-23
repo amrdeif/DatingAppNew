@@ -12,8 +12,7 @@ import { User } from '../_models/User';
 
 export class AuthService {
 
-  baseUrl = 'http://localhost:5002/api/auth/';
-  // baseUrl = environment.apiUrl + 'auth/';
+  baseUrl = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;
@@ -46,6 +45,4 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
-
-
 }
