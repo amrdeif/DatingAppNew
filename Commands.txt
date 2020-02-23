@@ -39,6 +39,18 @@ npm install bootswatch
 --Create guard
 ng g guard auth --skipTests
 
+--Install angular
+npm install -g @angular/cli
+
+--Get Angular version
+ng --version
+
+--Install NPM
+npm install -g npm
+
+--Get NPM version
+npm --version
+
 
 
 
