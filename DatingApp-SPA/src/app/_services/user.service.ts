@@ -6,11 +6,11 @@ import { User } from '../_models/User';
 
 // pass access token with each user request
 // Remove this code as it is configured in app.module.ts
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization' : 'Bearer ' + localStorage.getItem('token')
-  })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Authorization' : 'Bearer ' + localStorage.getItem('token')
+//   })
+// };
 
 
 @Injectable({

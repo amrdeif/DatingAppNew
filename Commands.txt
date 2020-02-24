@@ -51,8 +51,9 @@ npm install -g npm
 --Get NPM version
 npm --version
 
-
-
+--install image gallery
+npm install font-awesome --save
+npm install @kolkov/ngx-gallery
 
 =======Dot Net Core=======
 
