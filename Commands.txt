@@ -55,6 +55,10 @@ npm --version
 npm install font-awesome --save
 npm install @kolkov/ngx-gallery
 
+
+--install uploader
+npm install ng2-file-upload
+
 =======Dot Net Core=======
 
 --Create a new API

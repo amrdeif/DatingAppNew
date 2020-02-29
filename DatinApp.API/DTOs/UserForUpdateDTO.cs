@@ -4,7 +4,7 @@ namespace DatinApp.API.DTOs
 {
     public class UserForUpdateDTO
     {
-        [Required(ErrorMessage = "Username is required")]
+        [Required(ErrorMessage = "Introduction is required")]
         public string Introduction { get; set; }
 
         [Required(ErrorMessage = "LookinFor is required")]

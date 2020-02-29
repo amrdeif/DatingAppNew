@@ -16,11 +16,16 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;
-  photoURL = new BehaviorSubject<string>('../../assets/user.png');
-  currentPhotoUrl = this.photoURL.asObservable();
 
+  // BehaviorSubject used with any to any component comunication
+  photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+  currentPhotoUrl = this.photoUrl.asObservable();
 
   constructor(private http: HttpClient) { }
+
+  changeMemberPhoto(photoUrl: string) {
+    this.photoUrl.next(photoUrl);
+  }
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model)
@@ -28,10 +33,10 @@ export class AuthService {
           const user = response;
           if (user) {
             localStorage.setItem('token', user.token);
-            // localStorage.setItem('user', JSON.stringify(user.user));
+            localStorage.setItem('user', JSON.stringify(user.user));
             this.decodedToken = this.jwtHelper.decodeToken(user.token);
-            // this.currentUser = user.user;
-            // this.changeMemberPhoto(this.currentUser.photoUrl);
+            this.currentUser = user.user;
+            this.changeMemberPhoto(this.currentUser.photoUrl);
           }
       })
     );
@@ -45,4 +50,17 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
+
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    const userRoles = this.decodedToken.role as Array<string>;
+    allowedRoles.forEach(element => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    });
+    return isMatch;
+  }
+
 }
